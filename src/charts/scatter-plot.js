@@ -45,6 +45,11 @@ export class ScatterPlot extends CoordinateGridMixin {
         this.valueAccessor(d => originalKeyAccessor(d)[1]);
         this.colorAccessor(() => this._groupName);
 
+        // OPACITY TEST
+        this._opacityAccessor = () => this._groupName;
+        this._opacity = () => 0.5;
+
+
         // this basically just counteracts the setting of its own key/value accessors
         // see https://github.com/dc-js/dc.js/issues/702
         this.title(d => `${this.keyAccessor()(d)},${this.valueAccessor()(d)}: ${this.existenceAccessor()(d)}`);
@@ -236,7 +241,7 @@ export class ScatterPlot extends CoordinateGridMixin {
             if (!this._existenceAccessor(d)) {
                 cOpacity = this._emptyOpacity;
             } else if (isFiltered) {
-                cOpacity = this._nonemptyOpacity;
+                cOpacity = this.getOpacity(d);
             } else {
                 cOpacity = this.excludedOpacity();
             }
@@ -320,7 +325,7 @@ export class ScatterPlot extends CoordinateGridMixin {
                 if (!this._existenceAccessor(d)) {
                     return this._emptyOpacity;
                 } else if (this._filtered[i]) {
-                    return this._nonemptyOpacity;
+                    return this.getOpacity(d);
                 } else {
                     return this.excludedOpacity();
                 }
@@ -427,6 +432,43 @@ export class ScatterPlot extends CoordinateGridMixin {
         }
         this._symbolSize = symbolSize;
         return this;
+    }
+
+    /**
+     * Set or get radius for symbols.
+     * @see {@link https://github.com/d3/d3-shape/blob/master/README.md#symbol_size d3.symbol.size}
+     * @param {Number} [symbolSize=3]
+     * @returns {Number|ScatterPlot}
+     */
+    opacityAccessor (opacityAccessor) {
+        if (!arguments.length) {
+            return this._opacityAccessor;
+        }
+        this._opacityAccessor = opacityAccessor;
+        return this;
+    }
+
+    /**
+     * Set or get radius for symbols.
+     * @see {@link https://github.com/d3/d3-shape/blob/master/README.md#symbol_size d3.symbol.size}
+     * @param {Number} [symbolSize=3]
+     * @returns {Number|ScatterPlot}
+     */
+    opacity (opacity) {
+        if (!arguments.length) {
+          //console.log('holiii')
+            return this._opacity;
+        }
+        this._opacity = opacity;
+        /*console.log('opacity')
+        console.log(this._opacity)
+        console.log(opacity)*/
+        return this;
+    }
+    getOpacity(key){
+      //console.log(this.opacityAccessor())
+      //console.log(this.opacityAccessor()(key))
+      return this.opacity()(this.opacityAccessor()(key))
     }
 
     /**
