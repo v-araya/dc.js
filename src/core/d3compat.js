@@ -8,7 +8,7 @@ import {nest} from 'd3-collection';
 // The underlying handler will always receive bound datum as the first argument and the event as the second argument.
 // It is possible that any of these can actually be undefined (or null).
 export function adaptHandler (handler) {
-    const event = undefined
+    //const event = undefined
     return function (a, b) {
         if (a && a.target) {
             // d3@v6 - b is __data__, a is the event
