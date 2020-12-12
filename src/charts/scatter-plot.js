@@ -465,10 +465,11 @@ export class ScatterPlot extends CoordinateGridMixin {
     }
 
     getExcludedOpacity (key) {
-        if (!isNaN(this.excludedOpacity()))
-          return this._excludedOpacity
-        else 
-          return this.excludedOpacity() (this.opacityAccessor()(key))
+        if (!isNaN(this.excludedOpacity())){
+            return this._excludedOpacity
+        } else { 
+            return this.excludedOpacity() (this.opacityAccessor()(key))
+        }
     }
 
     /**
