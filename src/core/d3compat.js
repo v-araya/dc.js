@@ -1,4 +1,4 @@
-import {event} from 'd3-selection';
+//import {event} from 'd3-selection';
 import {nest} from 'd3-collection';
 import {groups} from 'd3-array';
 
