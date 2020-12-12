@@ -58,7 +58,7 @@ export class ScatterPlot extends CoordinateGridMixin {
         this._symbolSize = 5;
         this._excludedSize = 3;
         this._excludedColor = null;
-        this._excludedOpacity = 1.0;
+        this._excludedOpacity = () => 1.0;
         this._emptySize = 0;
         this._emptyOpacity = 0;
         this._nonemptyOpacity = 1;
@@ -243,7 +243,7 @@ export class ScatterPlot extends CoordinateGridMixin {
             } else if (isFiltered) {
                 cOpacity = this.getOpacity(d);
             } else {
-                cOpacity = this.excludedOpacity();
+                cOpacity = this.getExcludedOpacity(d);
             }
             // Calculate color for current data point
             let cColor = null;
@@ -435,10 +435,9 @@ export class ScatterPlot extends CoordinateGridMixin {
     }
 
     /**
-     * Set or get radius for symbols.
-     * @see {@link https://github.com/d3/d3-shape/blob/master/README.md#symbol_size d3.symbol.size}
-     * @param {Number} [symbolSize=3]
-     * @returns {Number|ScatterPlot}
+     * Set an accessor for the opacity
+     * @param {Function} [opacityAccessor]
+     * @returns {Function|ScatterPlot}
      */
     opacityAccessor (opacityAccessor) {
         if (!arguments.length) {
@@ -450,25 +449,26 @@ export class ScatterPlot extends CoordinateGridMixin {
 
     /**
      * Set or get radius for symbols.
-     * @see {@link https://github.com/d3/d3-shape/blob/master/README.md#symbol_size d3.symbol.size}
-     * @param {Number} [symbolSize=3]
-     * @returns {Number|ScatterPlot}
+     * @param {Function} [opacity]
+     * @returns {Function|ScatterPlot}
      */
     opacity (opacity) {
         if (!arguments.length) {
-          //console.log('holiii')
             return this._opacity;
         }
         this._opacity = opacity;
-        /*console.log('opacity')
-        console.log(this._opacity)
-        console.log(opacity)*/
         return this;
     }
-    getOpacity(key){
-      //console.log(this.opacityAccessor())
-      //console.log(this.opacityAccessor()(key))
-      return this.opacity()(this.opacityAccessor()(key))
+
+    getOpacity (key) {
+        return this.opacity()(this.opacityAccessor()(key))
+    }
+
+    getExcludedOpacity (key) {
+        if (!isNaN(this.excludedOpacity()))
+          return this._excludedOpacity
+        else 
+          return this.excludedOpacity() (this.opacityAccessor()(key))
     }
 
     /**
@@ -524,6 +524,7 @@ export class ScatterPlot extends CoordinateGridMixin {
             return this._excludedOpacity;
         }
         this._excludedOpacity = excludedOpacity;
+        console.log(this._excludedOpacity)
         return this;
     }
 

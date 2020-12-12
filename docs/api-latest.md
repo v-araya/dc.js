@@ -3096,8 +3096,8 @@ Examples:
     * [.symbol([type])](#ScatterPlot+symbol) ⇒ <code>function</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
     * [.customSymbol([customSymbol])](#ScatterPlot+customSymbol) ⇒ <code>String</code> \| <code>function</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
     * [.symbolSize([symbolSize])](#ScatterPlot+symbolSize) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
-    * [.opacityAccessor([symbolSize])](#ScatterPlot+opacityAccessor) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
-    * [.opacity([symbolSize])](#ScatterPlot+opacity) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
+    * [.opacityAccessor([opacityAccessor])](#ScatterPlot+opacityAccessor) ⇒ <code>function</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
+    * [.opacity([opacity])](#ScatterPlot+opacity) ⇒ <code>function</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
     * [.highlightedSize([highlightedSize])](#ScatterPlot+highlightedSize) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
     * [.excludedSize([excludedSize])](#ScatterPlot+excludedSize) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
     * [.excludedColor([excludedColor])](#ScatterPlot+excludedColor) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
@@ -3253,27 +3253,25 @@ Set or get radius for symbols.
 
 <a name="ScatterPlot+opacityAccessor"></a>
 
-### scatterPlot.opacityAccessor([symbolSize]) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
-Set or get radius for symbols.
+### scatterPlot.opacityAccessor([opacityAccessor]) ⇒ <code>function</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
+Set an accessor for the opacity
 
 **Kind**: instance method of [<code>ScatterPlot</code>](#ScatterPlot)  
-**See**: [d3.symbol.size](https://github.com/d3/d3-shape/blob/master/README.md#symbol_size)  
 
-| Param | Type | Default |
-| --- | --- | --- |
-| [symbolSize] | <code>Number</code> | <code>3</code> | 
+| Param | Type |
+| --- | --- |
+| [opacityAccessor] | <code>function</code> | 
 
 <a name="ScatterPlot+opacity"></a>
 
-### scatterPlot.opacity([symbolSize]) ⇒ <code>Number</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
+### scatterPlot.opacity([opacity]) ⇒ <code>function</code> \| [<code>ScatterPlot</code>](#ScatterPlot)
 Set or get radius for symbols.
 
 **Kind**: instance method of [<code>ScatterPlot</code>](#ScatterPlot)  
-**See**: [d3.symbol.size](https://github.com/d3/d3-shape/blob/master/README.md#symbol_size)  
 
-| Param | Type | Default |
-| --- | --- | --- |
-| [symbolSize] | <code>Number</code> | <code>3</code> | 
+| Param | Type |
+| --- | --- |
+| [opacity] | <code>function</code> | 
 
 <a name="ScatterPlot+highlightedSize"></a>
 

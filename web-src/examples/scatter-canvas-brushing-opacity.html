@@ -62,7 +62,9 @@
         .valueAccessor(function (d) { return d.key[1]; })
         .clipPadding(10)
         .dimension(dim1)
-        .excludedOpacity(0.5)
+        .excludedOpacity(function(opacityKey) { 
+          if (opacityKey < 0) return 0
+          else return 1})
         .excludedColor('#ddd')
         .highlightedSize(4)
         .group(group1)
