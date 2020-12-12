@@ -525,7 +525,6 @@ export class ScatterPlot extends CoordinateGridMixin {
             return this._excludedOpacity;
         }
         this._excludedOpacity = excludedOpacity;
-        console.log(this._excludedOpacity)
         return this;
     }
 
