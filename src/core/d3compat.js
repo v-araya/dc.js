@@ -1,6 +1,6 @@
-import {event} from 'd3-selection';
+//import {event} from 'd3-selection';
 import {nest} from 'd3-collection';
-//import {groups} from 'd3-array';
+import {groups} from 'd3-array';
 
 // d3v6 has changed the arguments for event handlers.
 // We are creating a wrapper which detects if the first argument is an event, which indicated d3@v6
@@ -8,6 +8,7 @@ import {nest} from 'd3-collection';
 // The underlying handler will always receive bound datum as the first argument and the event as the second argument.
 // It is possible that any of these can actually be undefined (or null).
 export function adaptHandler (handler) {
+    const event = undefined
     return function (a, b) {
         if (a && a.target) {
             // d3@v6 - b is __data__, a is the event
@@ -32,8 +33,8 @@ function _d3v5Nester ({key, sortKeys, sortValues, entries}) {
 
 function _d3v6Nester ({key, sortKeys, sortValues, entries}) {
     // Ugly ugly
-    return null
-    /*if (sortValues) {
+    //return null
+    if (sortValues) {
         entries = [...entries].sort(sortValues);
     }
     let out = groups(entries, key);
@@ -45,11 +46,11 @@ function _d3v6Nester ({key, sortKeys, sortValues, entries}) {
     return out.map(e => ({
         key: `${e[0]}`, // d3@v5 always returns key as string
         values: e[1]
-    }));*/
+    }));
 }
 
 export function compatNestHelper ({key, sortKeys, sortValues, entries}) {
-    const groups = undefined
+    //const groups = undefined
     if (groups) {
         // d3@v6
         return _d3v6Nester({key, sortKeys, sortValues, entries});
