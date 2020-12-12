@@ -25,7 +25,7 @@
     "url": "https://github.com/dc-js/dc.js.git"
   },
   "dependencies": {
-    "d3": "^5.3.0"
+    "d3": "^4.13.0"
   },
   "devDependencies": {
     "@chiragrupani/karma-chromium-edge-launcher": "^2.0.0",
